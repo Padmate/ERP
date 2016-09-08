@@ -1,0 +1,145 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="~/Resources/extjs-4.2.1/resources/ext-theme-neptune/ext-theme-neptune-all.css" rel="stylesheet" />
+    <script src="~/Resources/extjs-4.2.1/bootstrap.js"></script>
+</head>
+<body onload="ReSizeContentTabPanel()">
+    <script>
+
+
+        var tabPanel;
+        Ext.onReady(function () {
+            var store = Ext.create('Ext.data.TreeStore', {
+                root: {
+                    expanded: true
+                },
+                proxy: {
+                    type: 'ajax',
+                    url: '../tree-data.json'
+                }
+            });
+
+            // Go ahead and create the TreePanel now so that we can use it below
+            var treePanel = Ext.create('Ext.tree.Panel', {
+                id: 'tree-panel',
+                region: 'north',
+                split: true,
+                height: '100%',
+                minSize: 150,
+                rootVisible: false,
+                autoScroll: true,
+                store: store
+            });
+
+            // Assign the changeLayout function to be called on tree node click.
+            treePanel.getSelectionModel().on('select', function (selModel, record) {
+                if (record.get('leaf')) {
+                    
+                    var id = record.getId();
+                    //如果存在当前选项卡，则激活当前选项卡，否则创建选项卡
+                    if (Ext.getCmp(id)) {
+                        tabPanel.setActiveTab(id);
+                        
+
+                    } else {
+                        addTab(id);
+
+                    }
+                   
+                }
+            });
+            var currentItem;
+            tabPanel = Ext.create('Ext.tab.Panel', {
+                id:'content-tabpanel',
+                tabPosition: 'top',
+                activeTab: 0,
+                height: '100%',
+                width:'100%',
+                defaults: {
+                    bodyPadding: 10
+                },
+                items: [
+                  {
+                      title: '首 页',
+                      html: 'asdf'
+                  }
+                ]
+            });
+
+            Ext.create('Ext.Viewport', {
+                layout: 'border',
+                title: 'Ext Layout Browser',
+                items: [{
+                    xtype: 'box',
+                    id: 'header',
+                    region: 'north',
+                    html: '<h1> 华尔达ERP系统</h1>',
+                    height: 50
+                }, {
+                    layout: 'border',  //指定边框
+                    id: 'layout-browser',
+                    title: '供应商',
+                    region: 'west',
+                    collapsible: true,
+                    margin:'0 0 0 0',
+                    border: false,
+                    split: true,
+                    width: 290,
+                    minSize: 100,
+                    maxSize: 500,
+                    items:treePanel
+                },
+                {
+                    id: 'content-panel',
+                    layout: 'fit',
+                    region: 'center',
+                    margins: '0 0 3 1',
+                    items: tabPanel
+                }
+                ],
+                renderTo: Ext.getBody()
+            });
+
+           
+        });
+
+        function addTab(clickItemId) {
+            tabPanel.add({
+                closable: true,
+                id: clickItemId,
+                itemId: clickItemId,
+                //html: clickItemId,
+                title: clickItemId,
+                loader:{ url: "/Home/Contact",autoLoad:true, scripts:true},
+                tabConfig: {
+                    //双击关闭tab
+                    listeners: {
+                        element: 'el',
+                        dblclick: function () {
+                            tabPanel.remove(Ext.getCmp(clickItemId));
+                        }
+                    }
+                }
+            }).show();
+        }
+
+        //宽高自适应
+        function ReSizeContentTabPanel()
+        {
+            Ext.getCmp("content-tabpanel").setHeight(Ext.getCmp("content-panel").getHeight());
+            Ext.getCmp("content-tabpanel").setWidth(Ext.getCmp("content-panel").getWidth());
+        }
+    </script>
+
+</body>
+</html>
+
+
