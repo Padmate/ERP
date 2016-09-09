@@ -5,6 +5,16 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padmate.ERP.Web", "Padmate.ERP.Web\Padmate.ERP.Web.csproj", "{C174BB4F-1614-4A76-A707-EA1B483B38C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padmate.ERP.Models", "Padmate.ERP.Models\Padmate.ERP.Models.csproj", "{6A7FF1EF-5D72-411F-B2A5-D13DD9B6D167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padmate.ERP.Entities", "Padmate.ERP.Entities\Padmate.ERP.Entities.csproj", "{8BBE1FEB-BF56-4D84-80CD-50DB6F81A8B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padmate.ERP.DataAccess", "Padmate.ERP.DataAccess\Padmate.ERP.DataAccess.csproj", "{FBB31DE3-D6E2-44BF-9F69-AC5FAF3D4134}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padmate.ERP.Services", "Padmate.ERP.Services\Padmate.ERP.Services.csproj", "{280E420B-F953-40EA-A64E-05BB3165E9F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Padmate.ERP.Utility", "Padmate.ERP.Utility\Padmate.ERP.Utility.csproj", "{F55ABEB5-9D31-4134-BEBE-DB480EADB65F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +25,26 @@ Global
 		{C174BB4F-1614-4A76-A707-EA1B483B38C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C174BB4F-1614-4A76-A707-EA1B483B38C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C174BB4F-1614-4A76-A707-EA1B483B38C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A7FF1EF-5D72-411F-B2A5-D13DD9B6D167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A7FF1EF-5D72-411F-B2A5-D13DD9B6D167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A7FF1EF-5D72-411F-B2A5-D13DD9B6D167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A7FF1EF-5D72-411F-B2A5-D13DD9B6D167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BBE1FEB-BF56-4D84-80CD-50DB6F81A8B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BBE1FEB-BF56-4D84-80CD-50DB6F81A8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BBE1FEB-BF56-4D84-80CD-50DB6F81A8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BBE1FEB-BF56-4D84-80CD-50DB6F81A8B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBB31DE3-D6E2-44BF-9F69-AC5FAF3D4134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBB31DE3-D6E2-44BF-9F69-AC5FAF3D4134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBB31DE3-D6E2-44BF-9F69-AC5FAF3D4134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBB31DE3-D6E2-44BF-9F69-AC5FAF3D4134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280E420B-F953-40EA-A64E-05BB3165E9F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280E420B-F953-40EA-A64E-05BB3165E9F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280E420B-F953-40EA-A64E-05BB3165E9F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280E420B-F953-40EA-A64E-05BB3165E9F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F55ABEB5-9D31-4134-BEBE-DB480EADB65F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F55ABEB5-9D31-4134-BEBE-DB480EADB65F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F55ABEB5-9D31-4134-BEBE-DB480EADB65F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F55ABEB5-9D31-4134-BEBE-DB480EADB65F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
