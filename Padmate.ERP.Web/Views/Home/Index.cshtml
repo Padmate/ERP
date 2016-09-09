@@ -1,5 +1,9 @@
-﻿@{
-    Layout = null;
+﻿@using Padmate.ERP.Models;
+@using Padmate.ERP.Utility;
+@{
+    Layout = null;    
+    var user = Session[Common.SessionLoginUser] != null ? (M_User)Session[Common.SessionLoginUser] : null;
+
 }
 <!DOCTYPE html>
 <html>
@@ -7,14 +11,111 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>后台</title>
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+
+    <!-- Custom styles for our template -->
+
+    <link rel="stylesheet" href="~/Content/main.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link rel="stylesheet" href="~/Content/admin.css">
+    <link rel="stylesheet" href="~/Content/admin-skin.css">
+
+    <link rel="stylesheet" href="~/Content/Common.css">
+    <link rel="stylesheet" href="~/fonts/font-awesome/css/font-awesome.min.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
     <link href="~/Resources/extjs-4.2.1/resources/ext-theme-neptune/ext-theme-neptune-all.css" rel="stylesheet" />
+    
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Resources/extjs-4.2.1/bootstrap.js"></script>
+   
 </head>
-<body onload="ReSizeContentTabPanel()">
+<body class="skin-blue">
+
+    <div id="adminHeadArea">
+        <header class="main-header">
+            <a href="/" class="logo">
+                <span class="logo-lg"> HardaGroup ERP</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/images/loginuser.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs">
+                                    @user.UserName
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="~/images/loginuser.jpg" class="img-circle" alt="User Image">
+
+                                    <p>
+                                        欢迎登录ERP - @user.UserName
+                                        <small>@DateTime.Now</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Followers</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Sales</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="#">Friends</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">个人资料</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        @using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                        {
+                                            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat">注销</a>
+
+                                        }
+
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    </div>
+    <div id="adminContentArea"></div>
+    
     <script>
 
-
+        
         var tabPanel;
         Ext.onReady(function () {
             var store = Ext.create('Ext.data.TreeStore', {
@@ -81,7 +182,7 @@
                     xtype: 'box',
                     id: 'header',
                     region: 'north',
-                    html: '<h1><a href="/">华尔达ERP系统</a></h1>',
+                    html: $("#adminHeadArea").html(),
                     height: 50
                 }, {
                     layout: 'border',  //指定边框
@@ -92,7 +193,7 @@
                     margin:'0 0 0 0',
                     border: false,
                     split: true,
-                    width: 290,
+                    width:230,
                     minSize: 100,
                     maxSize: 500,
                     items:treePanel
@@ -108,17 +209,19 @@
                 renderTo: Ext.getBody()
             });
 
-           
+            window.onresize = WindowsResize;
         });
 
         function addTab(clickItemId) {
+
+            var dynamicTabHtml = "<iframe src='/Home/Contact' width='100%' height='100%' frameborder=0></iframe>";
             tabPanel.add({
                 closable: true,
                 id: clickItemId,
                 itemId: clickItemId,
-                //html: clickItemId,
+                html: dynamicTabHtml,
                 title: clickItemId,
-                loader:{ url: "/Home/Contact",autoLoad:true, scripts:true},
+                //loader:{ url: "/Home/Contact",autoLoad:true, scripts:true},
                 tabConfig: {
                     //双击关闭tab
                     listeners: {
@@ -132,8 +235,17 @@
         }
 
         //宽高自适应
-        function ReSizeContentTabPanel()
+        //480 768 992 1200 
+        function WindowsResize()
         {
+            var currentScreenWidth = document.body.clientWidth; ;
+            if(currentScreenWidth <767)
+            {
+                Ext.getCmp("layout-browser").collapse(Ext.Component.DIRECTION_LEFT, true);
+            } else {
+                Ext.getCmp("layout-browser").expand(true);
+
+            }
             Ext.getCmp("content-tabpanel").setHeight(Ext.getCmp("content-panel").getHeight());
             Ext.getCmp("content-tabpanel").setWidth(Ext.getCmp("content-panel").getWidth());
         }

@@ -1,4 +1,6 @@
 ﻿using Padmate.ERP.Models;
+using Padmate.ERP.Services;
+using Padmate.ERP.Utility;
 using Padmate.ERP.Web.Filters;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,8 @@ namespace Padmate.ERP.Web.Controllers
     {
         public ActionResult Default()
         {
-            return View();
+
+            return View(); 
         }
 
         [Authorization]

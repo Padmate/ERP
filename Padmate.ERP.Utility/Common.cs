@@ -9,5 +9,7 @@ namespace Padmate.ERP.Utility
     public class Common
     {
         public const string SessionLoginUser = "hardaerploginsession";
+
+        public const string Password_Client_Salt = "lajsldkfjlaksdflkhalksdf";
     }
 }

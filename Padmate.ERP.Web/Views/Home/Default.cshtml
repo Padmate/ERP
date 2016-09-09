@@ -1,6 +1,41 @@
-﻿@{
-    ViewBag.From = "Default";
+﻿@using Padmate.ERP.Models;
+@using Padmate.ERP.Utility;
+@{
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+    var user = Session[Common.SessionLoginUser] != null ? (M_User)Session[Common.SessionLoginUser] : null;
+    
 }
+<link rel="stylesheet" href="~/Content/login.css">
+<script src="~/Scripts/sha256.js"></script>
+<script src="~/Scripts/jquery.base64.js"></script>
+
+
+@if (user != null)
+{
+    <div class="login">
+        <h1>你好，</h1>
+        <h1>@user.UserName</h1>
+
+        <a href="/Home/Index" class="btn btn-danger">进入系统</a>
+        @using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default">注销</a>
+
+        }
+    </div>
+}
+else
+{
+    <form id="formLogin" action="/Account/Login" class="login" enctype="multipart/form-data">
+        <h1>登录系统</h1>
+        <label id="errormessage" class="login-message"></label>
+        <input type="text" id="username" name="UserName" class="login-input" placeholder="用户名" autofocus>
+        <input type="password" id="password" name="Password" class="login-input" placeholder="密码">
+        <input type="submit" value="登 录" class="login-submit">
+        <p class="login-help"><a href="#">忘记密码?</a></p>
+    </form>
+}
+
 
 
 <div class="news-section">
@@ -191,6 +226,15 @@
             $(this).find("i").removeClass("fa-spin");
         });
 
+        var options = {
+            type: "POST",
+            url: "/Account/Login",
+            dataType: "json",
+            beforeSubmit: showRequest,
+            success: showResponse
+        };
+        $('#formLogin').ajaxForm(options);
+
     });
     //初始化轮播图片
     function InitCarousel() {
@@ -211,4 +255,40 @@
             down: "but_down"
         });
     }
+
+
+    function showRequest(formData, jqForm, options) {
+        //密码进行hash加密
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if(username == null || username =="")
+        {
+            $("#errormessage").html("请输入用户名");
+            //防止普通表单提交action
+            return false;
+        }
+        if (password == null || password == "") {
+            $("#errormessage").html("请输入密码");
+            return false;
+        }
+
+        var clientSalt = username + '@Common.Password_Client_Salt';
+        var hashPassword = sha256_digest(password +clientSalt);
+        
+        var base64Hash = $.base64.btoa(hashPassword);
+        
+        $("#password").val(base64Hash);
+
+    }
+
+    //
+    function showResponse(message) {
+        if (message.Success) {
+            window.location.href = "/Home/Index";
+
+        } else {
+            $("#errormessage").html(message.Content);
+        }
+    }
+
 </script>

@@ -20,7 +20,19 @@ namespace Padmate.ERP.Web.Controllers
             {
                 return Json(message);
             }
-            //校验用户名和密码
+            //校验系统中是否存在该用户
+
+            //校验密码
+            //对客户端密码进行再次Hash
+            var loginHashPassword = PasswordHash.CreatePasswordAndSaltHash(model.Password);
+
+            //判断登录密码是否正确
+            if (!PasswordHash.ValidatePassword(model.Password, "MTAwMDpKOHBCUjFUUGdQdWR6c2lzYnhyQmNUbHFyKzVORWUxVjpKanZYVW9YcDQyUVJyZUkwNlNuaEExdG82c0wyRE1reg=="))
+            {
+                message.Success = false;
+                message.Content = "用户名或密码不正确";
+                return Json(message);
+            }
 
             //如果用户登录成功，则将用户信息写入session
             M_User user = new M_User();
@@ -33,6 +45,7 @@ namespace Padmate.ERP.Web.Controllers
             return Json(message);
         }
 
+        [HttpPost]
         public ActionResult SignOut()
         {
             ClearUserSessionInfo();

@@ -39,8 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="B_WebLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Padmate.ERP.DataAccess\Padmate.ERP.DataAccess.csproj">
+      <Project>{fbb31de3-d6e2-44bf-9f69-ac5faf3d4134}</Project>
+      <Name>Padmate.ERP.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Padmate.ERP.Entities\Padmate.ERP.Entities.csproj">
+      <Project>{8bbe1feb-bf56-4d84-80cd-50db6f81a8b3}</Project>
+      <Name>Padmate.ERP.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Padmate.ERP.Utility\Padmate.ERP.Utility.csproj">
+      <Project>{f55abeb5-9d31-4134-bebe-db480eadb65f}</Project>
+      <Name>Padmate.ERP.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
