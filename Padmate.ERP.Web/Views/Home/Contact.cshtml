@@ -29,19 +29,79 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Resources/extjs-4.2.1/bootstrap.js"></script>
 
+
+
+<style>
+    .ext-button{
+
+    }
+    .ext-button-toolbar{
+        background-color:lightblue;
+    }
+
+    .ext-paging-toolbar{
+        width:100%;
+        background-color:lightblue;
+    }
+
+    .ext-grid-container{
+        width:100%;
+        height:100%;
+        margin-bottom:10px;
+    }
+</style>
+
+<div id="gridTable" class="ext-grid-container"></div>
 <script>
+
+    Ext.Loader.setConfig({ enabled: true });
+
+    Ext.Loader.setPath('Ext.ux', '../Resources/extjs-4.2.1/ux/');
+    Ext.require([
+        'Ext.grid.*',
+        'Ext.data.*',
+        'Ext.util.*',
+        'Ext.toolbar.Paging',
+        'Ext.ux.PreviewPlugin',
+        'Ext.ModelManager',
+        'Ext.tip.QuickTipManager',
+        'Ext.ux.PageSizePlugin'
+    ]);
+
+    var EXTGRID_PAGINGSIZE = 20;
     Ext.onReady(function () {
+        Ext.tip.QuickTipManager.init();
+
+        InitButtons();
+
+
+        // 建立一个store要使用的 model
+        Ext.define('model', {
+            extend: 'Ext.data.Model',
+            fields: [
+                { name: 'ID', type: 'int' },
+                { name: 'TypeID', type: 'string' },
+                { name: 'LogConetnt', type: 'string' }
+            ]
+        });
+
+        //Store类封装了一个客户端缓存,用于存储 Model 对象. Stores 通过一个代理 Proxy 来加载数据
         var store = Ext.create('Ext.data.Store', {
-            fields: ["cataId", "cataNo", "cataRemark", "cataTitle", "cataObjectName", "cataeditstatusName",
-                 "cataPublishName", "cataEndDate", "holyUpdateTime", "catapushtime"],
+            model:'model',
             pageSize: 20,  //页容量5条数据
             //是否在服务端排序 （true的话，在客户端就不能排序）
             remoteSort: false,
             remoteFilter: true,
             proxy: {
                 type: 'ajax',
-                url: '/Tools/106.ashx?method=getAllCatalog',
-                reader: {   //这里的reader为数据存储组织的地方，下面的配置是为json格式的数据，例如：[{"total":50,"rows":[{"a":"3","b":"4"}]}]
+                url: '/Home/GetWebLogPageData',
+                actionMethods: {
+                    create: 'POST',
+                    read: 'POST', // by default GET
+                    update: 'POST',
+                    destroy: 'POST'
+                },
+                reader: {  //为json格式的数据，例如：[{"total":50,"rows":[{"a":"3","b":"4"}]}]
                     type: 'json', //返回数据类型为json格式
                     root: 'rows',  //数据
                     totalProperty: 'total' //数据总条数
@@ -49,57 +109,117 @@
             },
             sorters: [{
                 //排序字段。
-                property: 'ordeId',
+                property: 'ID',
                 //排序类型，默认为 ASC
-                direction: 'desc'
+                direction: 'asc'
             }],
             autoLoad: true  //即时加载数据
         });
 
+        store.on('beforeload', function (thisStore, options) {
+            ;
+            Ext.apply(thisStore.proxy.extraParams, {
+
+
+                // 每页显示记录数
+                limit: store.pageSize
+            });
+        });
+
         var grid = Ext.create('Ext.grid.Panel', {
-            renderTo: Ext.getBody(),
+            renderTo: Ext.get("gridTable"),
             store: store,
-            height: 400,
-            width: 800,
+            height: Ext.get("gridTable").getHeight()-10,
+            width: Ext.get("gridTable").getWidth(),
             selModel: { selType: 'checkboxmodel' },   //选择框
             columns: [
-                          { text: '型录ID', dataIndex: 'cataId', align: 'left', maxWidth: 80 },
-                          { text: '型录编号', dataIndex: 'cataNo', maxWidth: 120 },
-                          { text: '助记标题', dataIndex: 'cataTitle', align: 'left', minWidth: 80 },
-                          { text: '应用对象', dataIndex: 'cataObjectName', maxWidth: 80, align: 'left' },
-                          { text: '发布状态', dataIndex: 'cataPublishName', maxWidth: 80 },
-                          { text: '活动截止日期', dataIndex: 'cataEndDate', xtype: 'datecolumn', dateFormat: 'Y-m-d H:i:s' },
-                          { text: '更新时间', dataIndex: 'holyUpdateTime', xtype: 'datecolumn', dateFormat: 'Y-m-d H:i:s' },
-                          { text: '发布时间', dataIndex: 'catapushtime', xtype: 'datecolumn', dateFormat: 'Y-m-d H:i:s' }
+                          {
+                              text: '型录ID',
+                              dataIndex: 'ID',
+                              align: 'left',
+                              maxWidth: 80
+                          },
+                          {
+                              text: '型录编号',
+                              dataIndex: 'TypeID',
+                              maxWidth: 120
+                          },
+                          {
+                              text: '助记标题',
+                              dataIndex: 'LogConetnt',
+                              align: 'left',
+                              minWidth: 80
+                          }
             ],
+            tbar: toolbar,
             bbar: [{
+                cls: 'ext-paging-toolbar',
                 xtype: 'pagingtoolbar',
                 store: store,
-                displayMsg: '显示 {0} - {1} 条，共计 {2} 条',
-                emptyMsg: "没有数据",
+                emptyMsg: '没有数据显示',
+                displayMsg: '显示{0}到{1}条数据，共{2}条数据',
                 beforePageText: "当前页",
                 afterPageText: "共{0}页",
-                displayInfo: true
+                firstText: '首页',
+                prevText: '前一页',
+                nextText: '下一页',
+                lastText: '最后一页',
+                displayInfo: true,
+                plugins: [new Ext.ux.PageSizePlugin()]
             }],
             listeners: {
                 'itemclick': function (view, record, item, index, e) {
-                    Ext.MessageBox.alert("标题", record.data.cataId);
+                    Ext.MessageBox.alert("标题", record.data.ID);
                 }
-            },
-            tbar: [
-            { text: '新增', iconCls: 'a_add', handler: showAlert }, "-",
-            { text: '编辑', iconCls: 'a_edit2', handler: showAlert }, "-",
-            { text: '停用/启用', iconCls: 'a_lock' }, "-",
-            { text: '发布', iconCls: 'a_upload', handler: showAlert }, "-",
-            { text: '组织型录', iconCls: 'a_edit', handler: showAlert }, "-",
-            { text: '管理商品', iconCls: 'a_edit', handler: showAlert }, "-",
-            "->", { iconCls: "a_search", text: "搜索", handler: showAlert }],
+            }
         });
+
         function showAlert() {
             var selectedData = grid.getSelectionModel().getSelection()[0].data;
 
             Ext.MessageBox.alert("标题", selectedData.cataId);
         }
+
     });
 
+    var toolbar;
+    function InitButtons()
+    {
+        var enableBtn = Ext.create('Ext.button.Button', {
+            text: '启用所有项',
+            disabled: true,
+            iconCls:'a_add',
+            scope: this,
+            handler: function () {
+                //禁用disableBtn并且启用enableBtn
+                enableBtn.disable();
+                disableBtn.enable();
+
+                //启用该工具栏
+                toolbar.enable();
+            }
+        });
+
+        var disableBtn = Ext.create('Ext.button.Button', {
+            text: '禁用所有项',
+            iconCls:'a_add',
+            scope: this,
+            cls:'ext-button',
+            handler: function () {
+                //禁用disableBtn并且启用enableBtn
+                disableBtn.disable();
+                enableBtn.enable();
+
+                //禁用该工具栏
+                toolbar.disable();
+            }
+        });
+
+        toolbar = Ext.create('Ext.toolbar.Toolbar', {
+            width: '100%',
+            margin: '5 0 0 0',
+            cls:'ext-button-toolbar',
+            items: [enableBtn, '-','->',disableBtn]
+        });
+    }
 </script>

@@ -117,6 +117,7 @@
 
         
         var tabPanel;
+        var treePanel;
         Ext.onReady(function () {
             var store = Ext.create('Ext.data.TreeStore', {
                 root: {
@@ -129,7 +130,7 @@
             });
 
             // Go ahead and create the TreePanel now so that we can use it below
-            var treePanel = Ext.create('Ext.tree.Panel', {
+            treePanel = Ext.create('Ext.tree.Panel', {
                 id: 'tree-panel',
                 region: 'north',
                 split: true,
@@ -163,9 +164,10 @@
                 tabPosition: 'top',
                 activeTab: 0,
                 height: '100%',
-                width:'100%',
+                width: '100%',
+                autoScroll: true,
                 defaults: {
-                    bodyPadding: 10
+                    bodyPadding: 0
                 },
                 items: [
                   {
@@ -190,6 +192,11 @@
                     title: '供应商',
                     region: 'west',
                     collapsible: true,
+                    listeners:{
+                        'collapse': function(node,e){
+                            ResizeContentTabPanel();
+                        }
+                    },
                     margin:'0 0 0 0',
                     border: false,
                     split: true,
@@ -209,12 +216,16 @@
                 renderTo: Ext.getBody()
             });
 
-            window.onresize = WindowsResize;
+            window.onresize = function () {
+                WindowsResize();
+                ResizeContentTabPanel();
+            };
         });
 
         function addTab(clickItemId) {
 
-            var dynamicTabHtml = "<iframe src='/Home/Contact' width='100%' height='100%' frameborder=0></iframe>";
+            var iframeId = clickItemId + "Iframe";
+            var dynamicTabHtml = "<iframe id='" + iframeId + "' src='/Home/Contact' width='100%' height='100%'  frameborder=0 ></iframe>";
             tabPanel.add({
                 closable: true,
                 id: clickItemId,
@@ -228,11 +239,24 @@
                         element: 'el',
                         dblclick: function () {
                             tabPanel.remove(Ext.getCmp(clickItemId));
+                            //取消tab页的同时，判断左边选中的树节点是否与当前取消的tab页对应，如果对应则同时取消
+                            //树节点的选中状态
+                            var selectTreeNodes = treePanel.getSelectionModel().getSelection(); 
+                            for (var i = 0; i < selectTreeNodes.length; i++) {
+                                
+                                if (clickItemId == selectTreeNodes[i].internalId)
+                                {
+                                    treePanel.getSelectionModel().deselect(selectTreeNodes[i]);
+                                }
+                            }
+
                         }
                     }
                 }
             }).show();
         }
+
+        
 
         //宽高自适应
         //480 768 992 1200 
@@ -246,6 +270,11 @@
                 Ext.getCmp("layout-browser").expand(true);
 
             }
+            
+        }
+
+        function ResizeContentTabPanel()
+        {
             Ext.getCmp("content-tabpanel").setHeight(Ext.getCmp("content-panel").getHeight());
             Ext.getCmp("content-tabpanel").setWidth(Ext.getCmp("content-panel").getWidth());
         }

@@ -10,6 +10,10 @@ namespace Padmate.ERP.Models
 {
     public class BaseModel
     {
+        #region EXT
+        //public int page { get; set; }
+        //public int limit { get; set; }
+        #endregion
         #region BootStrap Tables
         public int limit { get; set; }
         //偏移量
