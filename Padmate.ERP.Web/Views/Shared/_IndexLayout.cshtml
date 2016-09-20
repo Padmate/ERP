@@ -1,0 +1,280 @@
+﻿@using Padmate.ERP.Models;
+@using Padmate.ERP.Utility;
+@{
+    Layout = null;
+    var title = "华尔达ERP";
+    if (!string.IsNullOrEmpty(ViewBag.Title))
+    {
+        title = ViewBag.Title + "|" + title;
+    }
+
+    List<M_Image> bgimages = new List<M_Image>(){
+                new M_Image(){VirtualPath ="/images/bg1.png", Name="bg1.png"}
+            };
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Padmate Allen">
+
+    <title>@title</title>
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+
+    <!-- Custom styles for our template -->
+
+    <link rel="stylesheet" href="~/Content/theme/default-theme.css" media="screen">
+    <link rel="stylesheet" href="~/Content/main.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+
+    <link rel="stylesheet" href="~/Content/Common.css">
+    <link rel="stylesheet" href="~/fonts/font-awesome/css/font-awesome.min.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+
+        .top-right-nav {
+            float: right;
+        }
+
+            .top-right-nav li {
+                float: left;
+            }
+    </style>
+</head>
+<body id="page-top" class="home">
+
+    <!--右侧边栏-->
+    <div class="nav-float nav-right-float">
+        <ul>
+            <!--返回顶部-->
+            <li id="linavtop" class="navtop">
+                <a class="rightSection page-scroll information-box" href="#page-top"
+                   style="display: block; background-color: #337ab7">
+                    <i class=" fa fa-angle-up">
+                    </i>
+                    <div class="information-box-caption">
+                        <div class="information-box-caption-content">
+
+                            <div style="font-size:medium;height:50px;">
+                                返回<br />顶部
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar navbar-inverse navbar-fixed-top headroom">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- Button for smallest screens -->
+                <button type="button" class="navbar-toggle" style="background-color:black" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="~/images/logo.png" alt="华尔达ERP"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <div class="navbar-top text-right">
+
+                </div>
+                <div class="navbar-bottom">
+                    <ul class="nav navbar-nav pull-right head-nav">
+                       
+                        <li class="checkmenu">
+                            <a href="/Home/about">
+                                关于我们
+                            </a>
+                        </li>
+
+                        <li class="dropdown checkmenu">
+                            <a href="javaScript:void(0)" class="dropdown-toggle" data-toggle="dropdown">通知公告 <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="">
+                                        ResearchAndDevelopment
+                                    </a>
+                                </li>
+                               
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                </div>
+
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-paginator.js"></script>
+    <script src="~/Scripts/classie.js"></script>
+    <script src="~/Scripts/animatedheader.js"></script>
+    <script src="~/Scripts/jq_scroll.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+
+    <script src="~/Scripts/template.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+
+    <header>
+
+        <div id="headbg-img" class="carousel slide">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                @if (bgimages.Count > 1)
+                {
+                    for (int i = 0; i < bgimages.Count; i++)
+                    {
+                        var activeClass = "";
+                        if (i == 0)
+                        {
+                            activeClass = "active";
+                        }
+                        <li data-target="#headbg-img" data-slide-to="@i" class="@activeClass"></li>
+                    }
+                }
+
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                @for (int i = 0; i < bgimages.Count; i++)
+                {
+                    var activeClass = "";
+                    if (i == 0)
+                    {
+                        activeClass = "active";
+                    }
+                    <div class="item @activeClass">
+                        <img class="img-responsive" src="@bgimages[i].VirtualPath" alt="@bgimages[i].Name.Split('.').First()">
+
+                    </div>
+                }
+            </div>
+            @if (bgimages.Count > 1)
+            {
+                <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control" href="#headbg-img"
+                   data-slide="prev"><span class="icon-prev" style="font-size: 50px; top: 70%;"></span></a>
+                <a class="carousel-control" style="right:0;left:auto;" href="#headbg-img"
+                   data-slide="next"><span class="icon-next" style="font-size: 50px; top: 70%;"></span></a>
+            }
+
+        </div>
+    </header>
+    <div>
+        @RenderBody()
+
+    </div>
+
+    <footer id="footer" class="top-space">
+
+        <div class="footer1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 widget">
+                        <h3 class="widget-title">旗下网站</h3>
+                        <div class="widget-body">
+                            <ul>
+                                <li>
+                                    <a class="customer-content-xs" href="http://www.xiamenip.cn">智能<sup>+</sup>创新创业公共服务平台</a>
+
+                                </li>
+                                <li>
+                                    <a class="customer-content-xs" href="http://www.padmate.cn">派美特</a>
+
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 widget">
+                        <h3 class="widget-title">联系我们</h3>
+                        <div class="widget-body">
+                            <p>
+                                +234 23 9873237<br>
+                                <a href="mailto:#">some.email@somewhere.com</a><br>
+                                <br>
+                                234 Hidden Pond Road, Ashland City, TN 37015
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 widget">
+                        <h3 class="widget-title">关注我们</h3>
+                        <div class="widget-body">
+
+                            <p class="follow-me-icons">
+                                <a href=""><i class="fa fa-twitter fa-2"></i></a>
+                                <a href=""><i class="fa fa-dribbble fa-2"></i></a>
+                                <a href=""><i class="fa fa-github fa-2"></i></a>
+                                <a href=""><i class="fa fa-facebook fa-2"></i></a>
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer2">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 widget">
+
+
+                    </div>
+
+                    <div class="col-md-6 widget">
+                        <div class="widget-body">
+                            <p class="text-right">
+                                Copyright © 2016-@DateTime.Now.Year All Rights Reserved
+                                &nbsp;|&nbsp;
+                                备案号:xxxxxxxxxxxx
+                            </p>
+                        </div>
+                    </div>
+
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+</html>
+<script>
+    $(function () {
+        
+
+        
+
+    });
+
+   
+
+
+</script>

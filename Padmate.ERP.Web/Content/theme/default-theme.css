@@ -1,6 +1,9 @@
 /*******************************/
 /*         Navigatioin         */
 /*******************************/
+body{
+    background-color:white;
+}
 header{
     padding-top:100px;
     background-color:white;

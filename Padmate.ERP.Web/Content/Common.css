@@ -61,16 +61,86 @@ h1,h2,h3,h4,h5,h6
 /*内容*/
 .customer-content-xs{
     font-size:14px;
-    line-height:1.75;
+    line-height:1.8;
     color:#333;
 }
 
-/******字体随着屏幕宽度改变*******/
-@media(max-width:480px) {
-   
+.input-mediu-full {
+    width: 100%;
+    max-width: 100%;
+    line-height: 30px;
+    height: 30px;
 }
 
-@media(max-width: 768px) {
+.select-mediu-full{
+    width: 100%;
+    max-width: 100%;
+    line-height: 30px;
+    height: 30px;
+}
+
+.input-large-full {
+    width: 100%;
+    max-width: 100%;
+    line-height: 35px;
+    height: 35px;
+}
+.select-large-ful{
+    width: 100%;
+    max-width: 100%;
+    line-height: 35px;
+    height: 35px;
+}
+
+.textarea-large-full {
+    height: 150px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.input-mediu {
+    width: 50%;
+    max-width: 50%;
+    line-height: 30px;
+    height: 30px;
+}
+
+.select-mediu{
+    width: 50%;
+    max-width: 50%;
+    line-height: 30px;
+    height: 30px;
+}
+
+.input-large {
+    width: 50%;
+    max-width: 50%;
+    line-height: 35px;
+    height: 35px;
+}
+.select-large{
+    width: 50%;
+    max-width: 50%;
+    line-height: 35px;
+    height: 35px;
+}
+
+.textarea-large {
+    height: 150px;
+    width: 50%;
+    max-width: 50%;
+}
+
+
+/******字体随着屏幕宽度改变*******/
+@media(max-width:479px) {
+   .customer-content-sm{font-size:12px;line-height:1.6;}
+    .customer-content-xs{font-size:10px;}
+    .input-large-full {height:25px;line-height:25px;}
+    .input-large {height:25px;line-height:25px;}
+}
+
+@media(min-width: 480px) and (max-width: 767px) {
 
     .customer-h1{ font-size:30px;}
     .customer-h2{ font-size:18px;}
@@ -78,13 +148,17 @@ h1,h2,h3,h4,h5,h6
     .customer-h4{font-size:14px;}
     .customer-content-lg{ font-size:16px;}
     .customer-content-md{font-size:14px;}
-    .customer-content-sm{font-size:12px;}
-    .customer-content-xs{font-size:10px;}
-
+    .customer-content-sm{font-size:14px;line-height:1.8;}
+    .customer-content-xs{font-size:12px;}
+    .input-large-full {height:30px;line-height:30px;}
+  .input-large {height:30px;line-height:30px;}
 
 }
 @media (min-width: 768px) and (max-width: 992px) {
-  
+  .customer-content-sm{font-size:14px;line-height:1.8;}
+  .customer-content-xs{font-size:12px;}
+  .input-large-full {height:30px;line-height:30px;}
+  .input-large {height:30px;line-height:30px;}
 }
 @media (min-width: 992px) and (max-width: 1200px) {
  
@@ -189,38 +263,6 @@ div.divmiddle-box-content { display: table-cell; vertical-align: middle; }
 }
 .curd-title{
     margin:20px auto;
-}
-.input-mediu {
-    width: 50%;
-    max-width: 50%;
-    line-height: 30px;
-    height: 30px;
-}
-
-.select-mediu{
-    width: 50%;
-    max-width: 50%;
-    line-height: 30px;
-    height: 30px;
-}
-
-.input-large {
-    width: 50%;
-    max-width: 50%;
-    line-height: 35px;
-    height: 35px;
-}
-.select-large{
-    width: 50%;
-    max-width: 50%;
-    line-height: 35px;
-    height: 35px;
-}
-
-.textarea-large {
-    height: 150px;
-    width: 50%;
-    max-width: 50%;
 }
 
 /*摸态框*/

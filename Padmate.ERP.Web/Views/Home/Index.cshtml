@@ -44,16 +44,226 @@
 <body class="skin-blue">
 
     <div id="adminHeadArea">
-        <header class="main-header">
-            <a href="/" class="logo">
-                <span class="logo-lg"> HardaGroup ERP</span>
-            </a>
-            <nav class="navbar navbar-static-top">
-                
 
-                <div class="navbar-custom-menu">
+        <header class="main-header">
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <div style="float:left">
+                    <a href="/" class="logo">
+                        <span class="logo-lg"> HardaGroup ERP</span>
+                    </a>
+                </div>
+                
+                <div class="navbar-header navbar-toggle-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-custom-menu" id="navbar-collapse">
                     <ul class="nav navbar-nav">
 
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/images/loginuser.jpg" class="img-circle" alt="User Image">
+                                                </div>
+                                                <h4>
+                                                    Support Team
+                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <!-- end message -->
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/images/loginuser.jpg" class="img-circle" alt="User Image">
+                                                </div>
+                                                <h4>
+                                                    AdminLTE Design Team
+                                                    <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/images/loginuser.jpg" class="img-circle" alt="User Image">
+                                                </div>
+                                                <h4>
+                                                    Developers
+                                                    <small><i class="fa fa-clock-o"></i> Today</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/images/loginuser.jpg" class="img-circle" alt="User Image">
+                                                </div>
+                                                <h4>
+                                                    Sales Department
+                                                    <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/images/loginuser.jpg" class="img-circle" alt="User Image">
+                                                </div>
+                                                <h4>
+                                                    Reviewers
+                                                    <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">10</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                                                page and may cause design problems
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users text-red"></i> 5 new members joined
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-user text-red"></i> You changed your username
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-flag-o"></i>
+                                <span class="label label-danger">9</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 9 tasks</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Design some buttons
+                                                    <small class="pull-right">20%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- end task item -->
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Create a nice theme
+                                                    <small class="pull-right">40%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">40% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- end task item -->
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Some task I need to do
+                                                    <small class="pull-right">60%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">60% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- end task item -->
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Make beautiful transitions
+                                                    <small class="pull-right">80%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">80% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- end task item -->
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
 
@@ -91,12 +301,12 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">个人资料</a>
+                                        <a href="javaScript:void(0)" onclick="ChangePassword();" class="btn btn-default btn-flat">更改密码</a>
                                     </div>
                                     <div class="pull-right">
                                         @using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { id = "logoutForm" }))
                                         {
-                                            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat">注销</a>
+                                        <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat">注销</a>
 
                                         }
 
@@ -121,11 +331,19 @@
         Ext.onReady(function () {
             var store = Ext.create('Ext.data.TreeStore', {
                 root: {
-                    expanded: true
+                    expanded: true,
+                    text:'root'
                 },
                 proxy: {
                     type: 'ajax',
-                    url: '../tree-data.json'
+                    //url: '../tree-data.json'
+                    actionMethods: {
+                        create: 'POST',
+                        read: 'POST', // by default GET
+                        update: 'POST',
+                        destroy: 'POST'
+                    },
+                    url: '/Home/LoadTreeData'
                 }
             });
 
@@ -138,25 +356,60 @@
                 minSize: 150,
                 rootVisible: false,
                 autoScroll: true,
-                store: store
+                store: store,
+                useArrows:true,
+                listeners: {
+                    //单击展开收缩
+                    itemclick: function (view, node) {
+                        if (node.isLeaf()) {
+                            //子节点，则打开对应的tab页
+                            var nodeId = node.data.id;
+                            var nodeText = node.data.text;
+                            //如果tab页已经打开，则激活该页面
+                            if (Ext.getCmp(nodeId)) {
+                                tabPanel.setActiveTab(nodeId);
+                            } else {
+
+                                var iframeSrc = "";
+                                if (node.raw != undefined) {
+                                    iframeSrc = node.raw.iframesrc;
+                                }
+
+                                var config = {
+                                    "nodeId": nodeId,
+                                    "nodeText": nodeText,
+                                    "iframeSrc": iframeSrc
+                                }
+                                addTab(config);
+
+                            }
+
+
+                        } else if (node.isExpanded()) {
+                            node.collapse();
+                        } else {
+                            node.expand();
+                        }
+                    }
+                }
             });
 
             // Assign the changeLayout function to be called on tree node click.
             treePanel.getSelectionModel().on('select', function (selModel, record) {
-                if (record.get('leaf')) {
-                    
-                    var id = record.getId();
-                    //如果存在当前选项卡，则激活当前选项卡，否则创建选项卡
-                    if (Ext.getCmp(id)) {
-                        tabPanel.setActiveTab(id);
+                //if (record.get('leaf')) {
+                //    debugger;
+                //    var id = record.getId();
+                //    //如果存在当前选项卡，则激活当前选项卡，否则创建选项卡
+                //    if (Ext.getCmp(id)) {
+                //        tabPanel.setActiveTab(id);
                         
 
-                    } else {
-                        addTab(id);
+                //    } else {
+                //        addTab(id, "/Home/Contact");
 
-                    }
+                //    }
                    
-                }
+                //}
             });
             var currentItem;
             tabPanel = Ext.create('Ext.tab.Panel', {
@@ -169,13 +422,21 @@
                 defaults: {
                     bodyPadding: 0
                 },
-                items: [
-                  {
-                      title: '首 页',
-                      html: 'asdf'
-                  }
-                ]
+                //items: [
+                //  {
+                //      title: '首 页',
+                //      html: 'asdf'
+                //  }
+                //]
             });
+
+            //添加首页
+            var config = {
+                "nodeText": "首页",
+                "iframeSrc": "/Home/IndexHome",
+                "closable":false
+            }
+            addTab(config);
 
             Ext.create('Ext.Viewport', {
                 layout: 'border',
@@ -222,38 +483,52 @@
             };
         });
 
-        function addTab(clickItemId) {
+        function addTab(config) {
 
-            var iframeId = clickItemId + "Iframe";
-            var dynamicTabHtml = "<iframe id='" + iframeId + "' src='/Home/Contact' width='100%' height='100%'  frameborder=0 ></iframe>";
-            tabPanel.add({
-                closable: true,
-                id: clickItemId,
-                itemId: clickItemId,
-                html: dynamicTabHtml,
-                title: clickItemId,
-                //loader:{ url: "/Home/Contact",autoLoad:true, scripts:true},
-                tabConfig: {
-                    //双击关闭tab
-                    listeners: {
-                        element: 'el',
-                        dblclick: function () {
-                            tabPanel.remove(Ext.getCmp(clickItemId));
-                            //取消tab页的同时，判断左边选中的树节点是否与当前取消的tab页对应，如果对应则同时取消
-                            //树节点的选中状态
-                            var selectTreeNodes = treePanel.getSelectionModel().getSelection(); 
-                            for (var i = 0; i < selectTreeNodes.length; i++) {
-                                
-                                if (clickItemId == selectTreeNodes[i].internalId)
+            if (config != null)
+            {
+                var nodeId = config.nodeId == null ? "" : config.nodeId;
+                var nodeText = config.nodeText == null ? "" : config.nodeText;
+                var iframeSrc = config.iframeSrc == null ? "" : config.iframeSrc;
+                var closable = (config.closable == null || config.closeable == "") ? true : false;
+
+                var iframeId = "iframe" + nodeId;
+                var dynamicTabHtml = "<iframe id='" + iframeId + "' src='" + iframeSrc + "' width='100%' height='100%'  frameborder=0 ></iframe>";
+
+                tabPanel.add({
+                    closable: closable,
+                    id: nodeId,
+                    itemId: nodeId,
+                    html: dynamicTabHtml,
+                    title: nodeText,
+                    //loader:{ url: "/Home/Contact",autoLoad:true, scripts:true},
+                    tabConfig: {
+                        //双击关闭tab
+                        listeners: {
+                            element: 'el',
+                            dblclick: function () {
+                                if(nodeId != null && nodeId !="")
                                 {
-                                    treePanel.getSelectionModel().deselect(selectTreeNodes[i]);
-                                }
-                            }
+                                    tabPanel.remove(Ext.getCmp(nodeId));
+                                    //取消tab页的同时，判断左边选中的树节点是否与当前取消的tab页对应，如果对应则同时取消
+                                    //树节点的选中状态
+                                    var selectTreeNodes = treePanel.getSelectionModel().getSelection();
+                                    for (var i = 0; i < selectTreeNodes.length; i++) {
 
+                                        if (nodeId == selectTreeNodes[i].internalId) {
+                                            treePanel.getSelectionModel().deselect(selectTreeNodes[i]);
+                                        }
+                                    }
+
+                                }
+                                
+                            }
                         }
                     }
-                }
-            }).show();
+                }).show();
+            }
+            
+            
         }
 
         
@@ -277,6 +552,20 @@
         {
             Ext.getCmp("content-tabpanel").setHeight(Ext.getCmp("content-panel").getHeight());
             Ext.getCmp("content-tabpanel").setWidth(Ext.getCmp("content-panel").getWidth());
+        }
+
+        function ChangePassword()
+        {
+            var nodeId = "changepassword";
+            var nodeText = "修改密码";
+            var iframeSrc = "/Account/ChangePassword";
+            //更改密码
+            var config = {
+                "nodeId":nodeId,
+                "nodeText":nodeText,
+                "iframeSrc":iframeSrc
+            }
+            addTab(config);
         }
     </script>
 

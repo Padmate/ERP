@@ -1,69 +1,43 @@
 { 
-text: '.',
+text: 'allen',
 children: [{
-    text:'Basic Ext Layouts',
+    text:'一级菜单',
     expanded: true,
     children:[{
-        text:'Absolute',
-        id:'absolute',
+        text:'Tab页1',
+        id: 'absolute',
+        iframesrc: '/Home/Contact',
+        leaf: true
+    },{
+        text:'Tab页2',
+        id: 'accordion',
+        iframeSrc: '/Home/Contact',
         leaf:true
     },{
-        text:'Accordion',
-        id:'accordion',
-        leaf:true
-    },{
-        text:'Anchor',
-        id:'anchor',
-        leaf:true
-    },{
-        text:'Border',
-        id:'border',
-        leaf:true
-    },{
-        text:'Card (TabPanel)',
-        id:'card-tabs',
-        leaf:true
-    },{
-        text:'Card (Wizard)',
-        id:'card-wizard',
-        leaf:true
-    },{
-        text:'Column',
-        id:'column',
-        leaf:true
-    },{
-        text:'Fit',
-        id:'fit',
-        leaf:true
-    },{
-        text:'Table',
-        id:'table',
-        leaf:true
-    },{
-        text:'vBox',
-        id:'vbox',
-        leaf:true
-    },{
-        text:'hBox',
-        id:'hbox',
+        text:'Tab页3',
+        id: 'hbox',
+        iframeSrc: '/Home/Contact',
         leaf:true
     }]
 },{
-    text:'Custom Layouts',
+    text:'二级菜单',
     children:[{
-        text:'Center',
-        id:'center',
+        text:'Tab页4',
+        id: 'center',
+        iframeSrc: '/Home/Contact',
         leaf:true
     }]
 },{
-    text:'Combination Examples',
+    text:'三级菜单',
     children:[{
-        text:'Absolute Layout Form',
-        id:'abs-form',
+        text:'Tab页5',
+        id: 'abs-form',
+        iframeSrc: '/Home/Contact',
         leaf:true
     },{
-        text:'Tabs with Nested Layouts',
-        id:'tabs-nested-layouts',
+        text:'Tab页6',
+        id: 'tabs-nested-layouts',
+        iframeSrc: '/Home/Contact',
         leaf:true
     }]
 }]

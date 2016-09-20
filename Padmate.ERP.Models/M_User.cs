@@ -10,6 +10,5 @@ namespace Padmate.ERP.Models
     public class M_User
     {
         public string UserName { get; set; }
-        
     }
 }

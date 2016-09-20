@@ -24,4 +24,23 @@ namespace Padmate.ERP.Models
         public string Password { get; set; }
 
     }
+
+    public class ChangePasswordViewModel : BaseModel
+    {
+        [Required(ErrorMessage = "请输入当前密码")]
+        [DataType(DataType.Password)]
+        [Display(Name = "密码")]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "请输入新密码")]
+        [MinLength(6, ErrorMessage = "密码长度不能小于6位")]
+        [Display(Name = "新密码")]
+        public string NewPassword { get; set; }
+
+        [Required(ErrorMessage = "请再次输入新密码")]
+        [DataType(DataType.Password)]
+        [Display(Name = "确认密码")]
+        public string ConfirmPassword { get; set; }
+
+    }
 }
