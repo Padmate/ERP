@@ -39,7 +39,7 @@ namespace Padmate.ERP.Web.Filters
                 filterContext.HttpContext.Response.Write(strContent);
                 filterContext.HttpContext.Response.End();
 
-                // 返回一个空的Result，否则在完成输出之前
+                // 返回一个空的Result，否则在完成输出之前，仍然会进入Action。 Updated by Michael.2012/6/1.
                 filterContext.Result = new EmptyResult();
                 
             }
